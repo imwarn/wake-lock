@@ -13,6 +13,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化国际化
     initializeI18n();
     
+    // 添加favicon元素到head中
+    const favicon = document.querySelector("link[rel='icon']") || document.createElement('link');
+    if (!document.querySelector("link[rel='icon']")) {
+        favicon.rel = 'icon';
+        favicon.href = './favicon2.ico'; // 默认使用favicon2.ico（屏幕常亮关闭状态）
+        document.head.appendChild(favicon);
+    }
+    
     // 语言切换按钮点击事件
     document.getElementById('languageToggle').addEventListener('click', function() {
         window.i18n.toggleLanguage();
@@ -167,6 +175,15 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimer(selectedMinutes);
     });
     
+    // 切换favicon图标
+    function toggleFavicon(isWakeLockActive) {
+        const favicon = document.querySelector("link[rel='icon']");
+        if (favicon) {
+            // 根据屏幕常亮状态切换图标
+            favicon.href = isWakeLockActive ? './favicon.ico' : './favicon2.ico';
+        }
+    }
+    
     // 切换屏幕常亮状态
     function toggleWakeLock() {
         if (!isActive) {
@@ -177,6 +194,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 statusText.textContent = window.i18n.getText('control.statusOn');
                 statusText.style.color = '#00f2fe';
                 setTimer(selectedMinutes || -1);
+                
+                // 切换favicon为常亮状态图标
+                toggleFavicon(true);
                 
                 // 保存状态到localStorage
                 localStorage.setItem('wakeLockEnabled', 'true');
@@ -191,6 +211,9 @@ document.addEventListener('DOMContentLoaded', function() {
             powerButton.classList.remove('active');
             statusText.textContent = window.i18n.getText('control.statusOff');
             statusText.style.color = '';
+            
+            // 切换favicon为非常亮状态图标
+            toggleFavicon(false);
             
             // 清除定时器
             clearTimer();
