@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="保持您的设备屏幕常亮，防止自动锁屏">
+    <meta name="keywords" content="屏幕常亮,防止锁屏,保持屏幕亮起,NoSleep,Wake Lock">
+    <meta name="author" content="Screen Wake Lock Control">
+    <meta name="robots" content="index, follow">
+    <title>屏幕常亮控制</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/fontawesome/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="language-switch">
+            <button id="languageToggle" class="language-btn"><i class="fas fa-globe"></i> <span id="languageText">切换到English</span></button>
+        </div>
+        <div class="header">
+            <h1 id="pageTitle">屏幕常亮控制</h1>
+            <p id="pageSubtitle">保持您的设备屏幕常亮</p>
+        </div>
+        
+        <div class="main-control">
+            <div class="power-button" id="powerButton">
+                <i class="fas fa-power-off"></i>
+            </div>
+            <p id="statusText">点击按钮开启屏幕常亮</p>
+            <div id="currentTime" class="current-time">当前时间: --:--:--</div>
+        </div>
+        
+        <div class="timer-section">
+            <h2 id="timerTitle">设置常亮时长</h2>
+            <div class="timer-controls">
+                <div class="timer-option" data-minutes="5">
+                    <span id="min5">5分钟</span>
+                </div>
+                <div class="timer-option" data-minutes="15">
+                    <span id="min15">15分钟</span>
+                </div>
+                <div class="timer-option" data-minutes="30">
+                    <span id="min30">30分钟</span>
+                </div>
+                <div class="timer-option" data-minutes="60">
+                    <span id="hour1">1小时</span>
+                </div>
+                <div class="timer-option" data-minutes="-1">
+                    <span id="forever">一直常亮</span>
+                </div>
+                <div class="timer-option custom">
+                    <input type="number" id="customTime" min="1" max="1440" placeholder="自定义分钟">
+                    <button id="setCustomTime">设置</button>
+                </div>
+            </div>
+            <div class="timer-display">
+                <p id="timerStatus">未设置定时</p>
+                <div id="timerProgress" class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="info-section">
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> <span id="aboutTitle">关于此工具</span></h3>
+                <p id="aboutContent">此工具使用NoSleep.js库来防止您的设备屏幕自动关闭。适用于阅读、观看视频或需要屏幕持续显示的场景。</p>
+            </div>
+            <div class="info-card">
+                <h3><i class="fas fa-exclamation-triangle"></i> <span id="noticeTitle">注意事项</span></h3>
+                <p id="noticeContent">使用屏幕常亮功能会增加电池消耗。在移动设备上，建议在连接电源时使用此功能。</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><a href="https://imwarn.com" target="_blank">Warn</a><span id="copyright"> © 2023 屏幕常亮控制 | 基于 </span><a href="https://github.com/richtr/NoSleep.js" target="_blank">NoSleep.js</a></p>
+        </div>
+    </div>
+
+    <script src="./assets/js/NoSleep.min.js"></script>
+    <script src="./assets/js/i18n.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
